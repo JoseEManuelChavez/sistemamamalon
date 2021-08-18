@@ -12,6 +12,7 @@
 	
 	<?php
 
+	include "modulos/tabla.php";
 
 		if (isset($_GET["ruta"])) {
 
@@ -21,10 +22,13 @@
 	          include "modulos/formulario.php";
 
 				
-			}else{
+			}else if ($_GET["ruta"] == "editarProductos.php") {
+				
+				include "modulos/editarProductos.php";
 
-				include "modulos/tabla.php";
-
+			}else if ($_GET["ruta"] == "EliminarProductos.php") {
+				
+				include "modulos/EliminarProductos.php";
 			}
 		}
 

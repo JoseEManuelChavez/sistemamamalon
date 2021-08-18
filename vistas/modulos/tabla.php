@@ -32,7 +32,17 @@
                           <td>'.$valueProductos["id_categoria"].'</td>
                           <td>'.$valueProductos["descripcion"].'</td>
                           <td>'.$valueProductos["stock"].'</td>
-                          <td>'.$valueProductos["precio"].'</td>
+                          <td>'.$valueProductos["precio"].'</td>';
+
+                          echo '<td>
+
+                          <div>
+                              
+                            <button  idProductos="'.$valueProductos["id"].'"><a href="index.php?ruta=editarProductos.php&producto='.$valueProductos["id"].'">Editar</a></button>
+
+                            <button idProductos="'.$valueProductos["id"].'"><a href="index.php?ruta=EliminarProductos.php&producto='.$valueProductos["id"].'">Eliminar</a></button>
+
+                          </div>
 
                       </tr>';            
              }

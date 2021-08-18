@@ -40,6 +40,71 @@ class ModeloProductos{
 		$stmt-> close();
 		$stmt = null;
 
+	}
+	
+	public function mdlMostrarProductosEditar($tabla , $id, $valor)
+	{
+		$stmt = Conexion::Conectar()->prepare("SELECT * FROM $tabla WHERE $id = $valor");
 
+		$stmt->execute();
+		return $stmt -> fetchAll();
+
+		$stmt-> close();
+		$stmt = null;
+		
+	}
+
+	public function mdlEditarProductos($tabla, $datos)
+	{
+		
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, id_categoria = :id_categoria, descripcion = :descripcion, stock = :stock, precio = :precio WHERE id = :id");
+
+		$stmt->bindParam(":nombre", $datos["nombreProductoEditado"], PDO::PARAM_STR);
+
+		$stmt->bindParam(":id_categoria", $datos["categoriaEditada"], PDO::PARAM_INT);
+
+		$stmt->bindParam(":descripcion", $datos["DescripcionEditada"], PDO::PARAM_STR);
+
+		$stmt->bindParam(":stock", $datos["DisponiblesEditar"], PDO::PARAM_INT);
+
+		$stmt->bindParam(":precio", $datos["precioEditado"], PDO::PARAM_STR);
+
+		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+		$stmt = null;
+
+	}
+
+	public function mdlEliminarProducto($Producto ,$tabla)
+	{
+		
+		$stmt = Conexion::Conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+
+		$stmt -> bindParam(":id", $Producto, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt -> close();
+		$stmt = null;
 	}
 }
